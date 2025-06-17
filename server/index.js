@@ -9,7 +9,7 @@ const PORT = process.env.PORT || 3001;
 // Middleware
 app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
-    ? ['https://your-domain.com'] // Replace with your actual domain
+    ? true // Allow all origins in production for now
     : ['http://localhost:5173', 'http://localhost:3000'],
   credentials: true
 }));
@@ -21,6 +21,21 @@ app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use((req, res, next) => {
   console.log(`${new Date().toISOString()} - ${req.method} ${req.path}`);
   next();
+});
+
+// Root endpoint for Railway health check
+app.get('/', (req, res) => {
+  res.json({ 
+    message: 'Inboxfolio API is running!',
+    status: 'OK',
+    timestamp: new Date().toISOString(),
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      emails: '/api/emails',
+      singleEmail: '/api/emails/:slug'
+    }
+  });
 });
 
 // Routes
@@ -165,10 +180,11 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`🚀 Inboxfolio API server running on port ${PORT}`);
   console.log(`📧 Ready to receive emails at http://localhost:${PORT}/api/emails`);
   console.log(`🏥 Health check available at http://localhost:${PORT}/api/health`);
+  console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
 });
 
 // Graceful shutdown

@@ -1,0 +1,41 @@
+# Frontend build files
+dist/
+build/
+.vite/
+
+# Frontend source (we only want backend on Railway)
+src/
+public/
+index.html
+vite.config.ts
+tailwind.config.js
+postcss.config.js
+
+# Development files
+.env.local
+.env.development
+
+# IDE files
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependencies (will be installed by Railway)
+node_modules/
+
+# Test files
+coverage/
+.nyc_output/
+
+# Temporary files
+.tmp/
+temp/

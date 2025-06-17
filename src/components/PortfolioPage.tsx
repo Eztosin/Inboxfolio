@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Email } from '../types/Email';
 import { EmailCard } from './EmailCard';
 import { LoadingSpinner } from './LoadingSpinner';
-import { Search, AlertCircle, RefreshCw } from 'lucide-react';
+import { Search, AlertCircle, RefreshCw, ExternalLink } from 'lucide-react';
 import { emailService } from '../services/api';
 
 interface PortfolioPageProps {
@@ -27,7 +27,12 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ onEmailSelect }) =
       const fetchedEmails = await emailService.getAllEmails();
       setEmails(fetchedEmails);
     } catch (err) {
-      setError('Failed to load emails. Please check your connection and try again.');
+      const isLocalhost = window.location.hostname === 'localhost';
+      const errorMessage = isLocalhost 
+        ? 'Failed to load emails. Make sure the backend server is running on port 3001.'
+        : 'Backend API not configured. Please deploy the backend server and update the API URL in environment variables.';
+      
+      setError(errorMessage);
       console.error('Error loading emails:', err);
     } finally {
       setLoading(false);
@@ -57,23 +62,54 @@ export const PortfolioPage: React.FC<PortfolioPageProps> = ({ onEmailSelect }) =
   }
 
   if (error) {
+    const isLocalhost = window.location.hostname === 'localhost';
+    
     return (
       <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex items-center justify-center">
-        <div className="text-center max-w-md mx-auto px-4">
+        <div className="text-center max-w-lg mx-auto px-4">
           <div className="p-3 bg-red-100 dark:bg-red-900/30 rounded-full w-fit mx-auto mb-6">
             <AlertCircle className="h-12 w-12 text-red-600 dark:text-red-400" />
           </div>
           <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-            Unable to Load Portfolio
+            {isLocalhost ? 'Backend Server Not Running' : 'Backend Not Configured'}
           </h2>
           <p className="text-gray-600 dark:text-gray-300 mb-6">{error}</p>
-          <button
-            onClick={handleRetry}
-            className="inline-flex items-center px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors duration-200"
-          >
-            <RefreshCw className="h-4 w-4 mr-2" />
-            Try Again
-          </button>
+          
+          {!isLocalhost && (
+            <div className="bg-blue-50 dark:bg-blue-900/30 border border-blue-200 dark:border-blue-700 rounded-lg p-4 mb-6">
+              <h3 className="font-semibold text-blue-900 dark:text-blue-100 mb-2">
+                Deployment Instructions
+              </h3>
+              <p className="text-blue-700 dark:text-blue-300 text-sm mb-3">
+                Your frontend is deployed, but you need to deploy the backend API separately.
+              </p>
+              <a 
+                href="https://railway.app" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors duration-200 text-sm"
+              >
+                Deploy Backend on Railway
+                <ExternalLink className="h-4 w-4 ml-2" />
+              </a>
+            </div>
+          )}
+          
+          <div className="flex flex-col sm:flex-row gap-3 justify-center">
+            <button
+              onClick={handleRetry}
+              className="inline-flex items-center px-6 py-3 bg-indigo-600 dark:bg-indigo-500 text-white font-medium rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors duration-200"
+            >
+              <RefreshCw className="h-4 w-4 mr-2" />
+              Try Again
+            </button>
+            
+            {isLocalhost && (
+              <div className="text-sm text-gray-500 dark:text-gray-400 self-center">
+                Run: <code className="bg-gray-200 dark:bg-gray-700 px-2 py-1 rounded">npm run dev</code>
+              </div>
+            )}
+          </div>
         </div>
       </div>
     );
