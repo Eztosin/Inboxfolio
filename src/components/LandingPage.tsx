@@ -1,6 +1,7 @@
 import React from 'react';
-import { Mail, Star, Shield, Zap, ArrowRight, CheckCircle, Code, Users, Award } from 'lucide-react';
+import { Mail, Star, Shield, Zap, ArrowRight, CheckCircle, Code, Users, Award, ExternalLink } from 'lucide-react';
 import { ContactForm } from './ContactForm';
+import { Footer } from './Footer';
 
 interface LandingPageProps {
   onNavigate: (page: string) => void;
@@ -74,11 +75,25 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
             <span className="text-purple-600 dark:text-purple-400">Beautiful Portfolio</span>
           </h1>
           
-          <p className="text-xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+          <p className="text-xl text-gray-600 dark:text-gray-300 mb-8 max-w-3xl mx-auto leading-relaxed">
             Inboxfolio automatically transforms your most impressive professional emails into a stunning, 
             public-facing portfolio. Perfect for freelancers, consultants, and professionals who want to 
             showcase job offers, testimonials, collaborations, and speaking invitations.
           </p>
+
+          {/* Built with Bolt Badge */}
+          <div className="flex justify-center mb-8">
+            <a
+              href="https://bolt.new"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-full shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-sm font-medium"
+            >
+              <Zap className="h-5 w-5 animate-pulse" />
+              <span>Built with Bolt.new</span>
+              <ExternalLink className="h-4 w-4 opacity-70 group-hover:opacity-100 transition-opacity" />
+            </a>
+          </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <button 
@@ -99,7 +114,7 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
       </div>
 
       {/* Features Section */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      <div id="features" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Why Choose Inboxfolio?
@@ -242,6 +257,9 @@ export const LandingPage: React.FC<LandingPageProps> = ({ onNavigate }) => {
 
       {/* Contact Form */}
       <ContactForm />
+
+      {/* Footer */}
+      <Footer />
     </div>
   );
 };

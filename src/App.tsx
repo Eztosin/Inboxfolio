@@ -5,6 +5,7 @@ import { PortfolioPage } from './components/PortfolioPage';
 import { EmailDetail } from './components/EmailDetail';
 import { ErrorBoundary } from './components/ErrorBoundary';
 import { DebugInfo } from './components/DebugInfo';
+import { BoltBadge } from './components/BoltBadge';
 import { Email } from './types/Email';
 
 type PageType = 'home' | 'portfolio' | 'email-detail';
@@ -109,6 +110,9 @@ function App() {
             onBack={handleBackToPortfolio}
           />
         )}
+
+        {/* Bolt.new Badge - always visible */}
+        <BoltBadge />
 
         {/* Debug Info - only show in development or when debugging */}
         {showDebug && <DebugInfo />}

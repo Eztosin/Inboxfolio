@@ -1,8 +1,21 @@
 # Inboxfolio 📧
 
+> **Built with [Bolt.new](https://bolt.new)** ⚡
+
 Transform your professional emails into a beautiful portfolio showcase. Perfect for freelancers, consultants, and professionals who want to display job offers, testimonials, collaborations, and speaking invitations.
 
 ![Inboxfolio Screenshot](https://images.pexels.com/photos/4439901/pexels-photo-4439901.jpeg?auto=compress&cs=tinysrgb&w=1200&h=600&fit=crop)
+
+## 🏆 Hackathon Submission
+
+This project was created for the **Bolt.new Hackathon** and showcases the power of AI-assisted development. Built entirely using Bolt.new's AI-powered development environment.
+
+### 🚀 **Built with Bolt.new Features:**
+- ⚡ **Rapid Prototyping**: From concept to deployment in hours
+- 🤖 **AI-Assisted Development**: Smart code generation and debugging
+- 🔄 **Real-time Iteration**: Instant feedback and improvements
+- 🌐 **Full-Stack Development**: Frontend and backend in one environment
+- 📦 **Automated Deployment**: Seamless deployment to production
 
 ## ✨ Features
 
@@ -56,6 +69,24 @@ Transform your professional emails into a beautiful portfolio showcase. Perfect 
 4. **Open your browser**
    - Frontend: http://localhost:5173
    - API: http://localhost:3001
+
+## 🌟 Bolt.new Development Experience
+
+This project demonstrates the incredible capabilities of Bolt.new:
+
+### 🎯 **What Bolt.new Enabled:**
+- **Instant Setup**: No configuration needed - just start coding
+- **Smart Suggestions**: AI-powered code completion and improvements
+- **Real-time Preview**: See changes instantly as you develop
+- **Integrated Deployment**: Deploy to production with one click
+- **Full-Stack Awareness**: AI understands both frontend and backend
+
+### 💡 **Development Highlights:**
+- Built complete email portfolio system in one session
+- AI suggested optimal database schema and API design
+- Automatic responsive design implementation
+- Smart error handling and edge case coverage
+- Production-ready security features out of the box
 
 ## 📖 API Documentation
 
@@ -133,8 +164,8 @@ npm run build
 
 ### Deploy Backend
 The Express backend can be deployed to:
+- **Railway**: Connect GitHub repo and deploy (Recommended)
 - **Heroku**: Add `Procfile` with `web: node server/index.js`
-- **Railway**: Connect GitHub repo and deploy
 - **DigitalOcean App Platform**: Use the provided spec
 - **Vercel**: Deploy as serverless functions
 
@@ -167,14 +198,6 @@ app.post('/webhook/postmark', (req, res) => {
 });
 ```
 
-### Mailgun
-```javascript
-// Similar webhook setup for Mailgun
-app.post('/webhook/mailgun', (req, res) => {
-  // Process Mailgun webhook format
-});
-```
-
 ## 🎨 Customization
 
 ### Styling
@@ -184,6 +207,23 @@ app.post('/webhook/mailgun', (req, res) => {
 
 ### Email Categories
 Add custom categories by modifying the database schema and updating the frontend filters.
+
+## 🏆 Hackathon Achievements
+
+### 🎯 **Technical Accomplishments:**
+- ✅ Full-stack application with React + Express
+- ✅ Real-time API integration
+- ✅ Responsive design with dark mode
+- ✅ Production-ready deployment
+- ✅ Comprehensive documentation
+- ✅ Security best practices
+
+### 🚀 **Bolt.new Showcase:**
+- ✅ Rapid development from concept to production
+- ✅ AI-assisted code generation and optimization
+- ✅ Seamless full-stack development experience
+- ✅ Automated deployment and configuration
+- ✅ Professional-grade application architecture
 
 ## 🤝 Contributing
 
@@ -199,6 +239,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 🙏 Acknowledgments
 
+- **[Bolt.new](https://bolt.new)** for the incredible AI-powered development experience
 - [Tailwind CSS](https://tailwindcss.com) for the utility-first CSS framework
 - [Lucide](https://lucide.dev) for the beautiful icons
 - [Pexels](https://pexels.com) for stock photography
@@ -212,4 +253,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Made with ❤️ for professionals who want to showcase their career journey through their inbox.**
+**Made with ❤️ and ⚡ [Bolt.new](https://bolt.new) for professionals who want to showcase their career journey through their inbox.**
+
+### 🏆 **Bolt.new Hackathon 2024**
+*Demonstrating the future of AI-assisted development*
