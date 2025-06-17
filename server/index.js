@@ -30,6 +30,8 @@ app.get('/', (req, res) => {
     status: 'OK',
     timestamp: new Date().toISOString(),
     version: '1.0.0',
+    environment: process.env.NODE_ENV || 'development',
+    port: PORT,
     endpoints: {
       health: '/api/health',
       emails: '/api/emails',
@@ -162,7 +164,10 @@ app.get('/api/health', (req, res) => {
     status: 'OK', 
     message: 'Inboxfolio API is running',
     timestamp: new Date().toISOString(),
-    version: '1.0.0'
+    version: '1.0.0',
+    uptime: process.uptime(),
+    memory: process.memoryUsage(),
+    environment: process.env.NODE_ENV || 'development'
   });
 });
 
@@ -185,6 +190,7 @@ app.listen(PORT, '0.0.0.0', () => {
   console.log(`📧 Ready to receive emails at http://localhost:${PORT}/api/emails`);
   console.log(`🏥 Health check available at http://localhost:${PORT}/api/health`);
   console.log(`🌍 Environment: ${process.env.NODE_ENV || 'development'}`);
+  console.log(`🔗 Server accessible at: http://0.0.0.0:${PORT}`);
 });
 
 // Graceful shutdown

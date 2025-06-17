@@ -4,6 +4,7 @@ import { LandingPage } from './components/LandingPage';
 import { PortfolioPage } from './components/PortfolioPage';
 import { EmailDetail } from './components/EmailDetail';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { DebugInfo } from './components/DebugInfo';
 import { Email } from './types/Email';
 
 type PageType = 'home' | 'portfolio' | 'email-detail';
@@ -18,6 +19,7 @@ function App() {
     }
     return false;
   });
+  const [showDebug, setShowDebug] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
@@ -27,6 +29,13 @@ function App() {
     }
     localStorage.setItem('darkMode', isDarkMode.toString());
   }, [isDarkMode]);
+
+  // Show debug info in development or when there are connection issues
+  useEffect(() => {
+    const isDev = import.meta.env.DEV;
+    const isLocalhost = window.location.hostname === 'localhost';
+    setShowDebug(isDev || isLocalhost || window.location.search.includes('debug=true'));
+  }, []);
 
   // Handle browser back/forward navigation
   useEffect(() => {
@@ -100,6 +109,9 @@ function App() {
             onBack={handleBackToPortfolio}
           />
         )}
+
+        {/* Debug Info - only show in development or when debugging */}
+        {showDebug && <DebugInfo />}
       </div>
     </ErrorBoundary>
   );
